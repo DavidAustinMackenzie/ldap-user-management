@@ -1,0 +1,23 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LDAP User Management App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <header>
+        {% block header %}
+        {% endblock %}
+    </header>
+    
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        &copy; 2023 LDAP User Management App
+    </footer>
+</body>
+</html>

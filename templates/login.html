@@ -1,0 +1,24 @@
+<!-- templates/login.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Login</h2>
+    {% for msg in get_flashed_messages() %}
+            <div class="alert alert-danger" role="alert">
+                {{ msg }}
+            </div>
+    {% endfor %}
+    <form method="post">
+        <table>
+            <tr>
+                <td><label for="username">Username</label></td>
+                <td><input type="text" name="username" id="username" required></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td><input type="password" name="password" id="password" required></td>
+            </tr>
+        </table>
+        <input type="submit" value="Login">
+    </form>
+{% endblock %}

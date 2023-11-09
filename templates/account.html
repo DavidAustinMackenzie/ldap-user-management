@@ -1,0 +1,75 @@
+<!-- templates/account.html -->
+{% extends 'base.html' %}
+{% block header %}
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        {% if current_user.username == "admin" %}
+        <li class="nav-item">
+            <a class="nav-link" href="/users">Users</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+            <a class="nav-link active" href="/account">Update account</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/accountPassword">Update password</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+        </li>
+    </ul>
+</nav>
+{% endblock %}
+{% block content %}
+    <h2>Account details page</h2>
+    <form method="post">
+        <table>
+            <tr>
+                <td><label for="uid_number">Uid number:</label></td>
+                <td><input type="text" name="uid_number" id="uid_number" value="{{user.uidNumber}}" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="uid">Username</label></td>
+                <td><input type="text" name="uid" id="uid" value="{{user.uid}}" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="first_name">First name</label></td>
+                <td><input type="text" name="first_name" id="first_name" value="{{user.givenName}}" required></td>
+            </tr>
+            <tr>
+                <td><label for="last_name">Last name</label></td>
+                <td><input type="text" name="last_name" id="last_name" value="{{user.sn}}"required></td>
+            </tr>
+            <tr>
+                <td><label for="full_name">Full name</label></td>
+                <td><input type="text" name="full_name" id="full_name" value="{{user.cn}}" required></td>
+            </tr>
+            <tr>
+                <td><label for="login_shell">Choose a login shell:</label></td>
+                <td>
+                    <select name="login_shell" id="login_shell">
+                        {% if user.loginShell == "/bin/sh" %}
+                        <option value="/bin/sh" selected>Shell</option>
+                        {% else %}
+                        <option value="/bin/sh">Shell</option>
+                        {% endif %}
+                        {% if user.loginShell == "/bin/csh" %}
+                        <option value="/bin/csh" selected>Cshell</option>
+                        {% else %}
+                        <option value="/bin/csh">Cshell</option>
+                        {% endif %}
+                        {% if user.loginShell == "/usr/local/bin/bash" %}
+                        <option value="/usr/local/bin/bash" selected>Bash</option>
+                        {% else %}
+                        <option value="/usr/local/bin/bash">Bash</option>
+                        {% endif %}
+                    </select> 
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Update account details">
+    </form>
+{% endblock %}
